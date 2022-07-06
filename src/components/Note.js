@@ -6,7 +6,7 @@ const Note=({deleteData,readNote,title,date,data_id})=>{
         <h1 className="font-bold text-white">{title}</h1>
         <h3 className="font-bold text-white">{date}</h3>
       </div>
-      <i className="fa fa-trash text-3xl text-white opacity-25 hover:text-red-500 hover:opacity-100" onClick={()=>deleteData(data_id)}></i>
+      <i className="fa fa-trash text-3xl text-white opacity-25 hover:text-red-500 hover:opacity-100" onClick={()=>deleteData(data_id,false)}></i>
     </div>
   )
 }

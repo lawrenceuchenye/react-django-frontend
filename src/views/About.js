@@ -15,15 +15,15 @@ const About=()=>{
               <h2 className="text-yellow-300 uppercase">Javascript</h2>
              </li>
            <li className="mb-2">
-              <h2 className="text-blue-300 uppercase">React Front-End FrameWork(Library)</h2>
+              <h2 className="text-blue-300 uppercase">React FrameWork</h2>
             </li>
            <li className="mb-2">
-              <h2 className="text-green-300 uppercase">Django Back-End Framework</h2>
+              <h2 className="text-green-300 uppercase">Django Framework</h2>
             </li>
          </ul>
         </div>
         <div className="m-4 text-center w-full">
-           <h1 className="font-bold text-white text-2xl mb-1">Copyright © 2022</h1>
+           <h1 className="font-bold text-white text-2xl mb-1">Copyright © 2022</h1><br />
            <h4 className="text-white">v1.0.0</h4>
          </div>
     </div>
