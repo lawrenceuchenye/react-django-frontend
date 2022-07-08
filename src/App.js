@@ -13,9 +13,15 @@ function App() {
 
   useEffect(()=>{
      const fetchNotes=async()=>{
-       const res=await fetch("http://localhost:5000/notes");
-      const data=await res.json();
-      setNotes(data);
+        await fetch("http://localhost:8000/api/notes/").then(res=>{
+         return res.json()
+       }).then(json=>{
+        alert(json);
+       });
+      /* const data=await res.json();
+       console.log(data);
+       alert(data);
+       setNotes(data);*/
      }
 
      fetchNotes();
@@ -54,23 +60,31 @@ function App() {
   }
 
 
- const editData=async (e,Title,Body,id)=>{
-   e.preventDefault();
-   const gdate=getDate();
-   const note={
-    title:Title,
-    body:Body,
-    date:gdate
-   }
-  
-   await fetch(`http://localhost:5000/notes/${id}`,{
-     method:"POST",
-     headers:{
-      "Content-type":"application/json"
-     },
-     body:JSON.stringify(note)
-   });
+ const getNote=async (id)=>{
+   const res=await fetch(`http://localhost:5000/notes/${id}/`,{
+      method:"GET"
+    });
+    const data=await res.json();
+    return data;
+ }
 
+ 
+ const editData=async (e,title,body,id)=>{
+   e.preventDefault();
+   const date=getDate();
+   const note=await getNote(id);
+   let newData={title,body,date}
+
+   console.log(newData);
+
+   await fetch(`http://localhost:5000/notes/${id}`,{
+     method:"PUT",
+     headers:{
+      "Content-Type":"application/json"
+     },
+     body:JSON.stringify(newData)
+   });
+  
    window.location.replace("/");
   }
 

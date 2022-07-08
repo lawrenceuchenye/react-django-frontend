@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import {useParams} from "react-router-dom";
 
 const EditNote=({editData,deleteData,notes})=>{
@@ -7,23 +7,37 @@ const EditNote=({editData,deleteData,notes})=>{
   const { id }=useParams();
 
   const getNote=(id)=>{
-    const targetNote=notes.filter(function(note){
-      if(note.id == id){
-        return note
+    const getTargetNote=notes.filter(function(note){
+      if(note.id==id){
+        return note;
       }
-      return null;
-    })
-    return targetNote[0];
-  }
+     return null;
+    });
+    return getTargetNote[0];
+  } 
 
   const Home=()=>{
     window.location.replace("/");
   }
 
-  const data=getNote(id);
+
+ let data={"title":"$","body":"#","id":4};
+ data=getNote(id);
+ useEffect(()=>{
+   fetch(`http://localhost:5000/notes/${id}/`,{
+       method:"GET"
+   }).then(res=>{
+      return res.json();
+   }).then(json=>{
+     setTitle(json.title);
+     setBody(json.body);
+   })
+
+  },[]);
 
   return(
      <div className="bg-slate-900">
+     
      <div className="m-4 pb-2">
          <form onSubmit={(e)=>editData(e,title,body,data.id)}>
            <div className="flex">
